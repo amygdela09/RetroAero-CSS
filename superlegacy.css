@@ -1,0 +1,423 @@
+/*
+ * Legacy UI - A CSS library for a classic OS look and feel.
+ * Version 2.6.0 (Frutiger Aero Update)
+ * Themes for Windows 95, Windows XP, and a feature-rich glossy Windows 7 Aero.
+ * To use a theme, add the theme class (e.g., 'theme-winXP', 'theme-win7') to a parent container.
+ */
+
+/* --- Root Variables (Default - Windows 95) --- */
+.legacy-ui {
+    --legacy-font-family: 'Tahoma', 'MS Sans Serif', 'Verdana', sans-serif;
+    --legacy-font-size: 12px;
+    /* Backgrounds */
+    --legacy-bg-color: #c0c0c0;
+    --legacy-window-bg-color: #ffffff;
+    --legacy-button-face-color: #c0c0c0;
+    --legacy-window-header-bg: #000080; /* Solid Color */
+    /* Text */
+    --legacy-text-color: #000000;
+    --legacy-window-header-text-color: #ffffff;
+    /* Borders & Shadows */
+    --legacy-border-light-color: #ffffff;
+    --legacy-border-dark-color: #808080;
+    --legacy-border-black-color: #000000;
+    --legacy-button-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+    --legacy-window-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+    --legacy-input-shadow: 1px 1px 0 #ddd inset;
+    --legacy-inset-border: 1px solid;
+    --legacy-inset-border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+    /* Component Specific */
+    --legacy-window-border-radius: 0;
+    --legacy-button-border-radius: 0;
+    --legacy-button-border-style: solid;
+    --legacy-button-border-color: var(--legacy-border-light-color) var(--legacy-border-black-color) var(--legacy-border-black-color) var(--legacy-border-light-color);
+    --legacy-button-active-border-color: var(--legacy-border-black-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-black-color);
+}
+
+/* --- Windows XP Theme --- */
+.theme-winXP {
+    --legacy-font-family: 'Tahoma', 'Verdana', sans-serif;
+    --legacy-font-size: 11px;
+    --legacy-bg-color: #ece9d8;
+    --legacy-button-face-color: #f0f0f0;
+    --legacy-window-header-bg: linear-gradient(to right, #0055e7, #0078ff 80%);
+    --legacy-window-header-text-color: #ffffff;
+    --legacy-border-dark-color: #aca899;
+    --legacy-border-black-color: #707070;
+    --legacy-button-shadow: none;
+    --legacy-window-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    --legacy-input-shadow: none;
+    --legacy-inset-border-color: var(--legacy-border-dark-color);
+    --legacy-window-border-radius: 3px;
+    --legacy-button-border-radius: 3px;
+    --legacy-button-border-color: #0045e0;
+}
+
+/* --- Windows 7 Frutiger Aero Theme --- */
+.theme-win7 {
+    --legacy-font-family: 'Segoe UI', 'Tahoma', sans-serif;
+    --legacy-font-size: 12px;
+    --legacy-bg-color: rgba(255, 255, 255, 0.25);
+    --legacy-window-bg-color: rgba(255, 255, 255, 0.6);
+    --legacy-button-face-color: rgba(255, 255, 255, 0.5);
+    --legacy-window-header-bg: linear-gradient(to bottom, rgba(125, 200, 255, 0.7), rgba(80, 160, 220, 0.5));
+    --legacy-window-header-text-color: #000000;
+    --legacy-border-dark-color: rgba(0, 80, 150, 0.5);
+    --legacy-border-black-color: rgba(0, 50, 100, 0.6);
+    --legacy-button-shadow: none;
+    --legacy-window-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --legacy-input-shadow: none;
+    --legacy-inset-border-color: rgba(0, 80, 150, 0.5);
+    --legacy-window-border-radius: 10px;
+    --legacy-button-border-radius: 10px;
+    --legacy-button-border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- Base Component Styles --- */
+.legacy-window {
+    background-color: var(--legacy-window-bg-color);
+    border: 1px solid var(--legacy-border-black-color);
+    box-shadow: var(--legacy-window-shadow);
+    min-width: 250px;
+    margin: 20px auto;
+    border-radius: var(--legacy-window-border-radius);
+    overflow: hidden;
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    color: var(--legacy-text-color);
+}
+
+.legacy-window-header {
+    background: var(--legacy-window-header-bg);
+    color: var(--legacy-window-header-text-color);
+    padding: 4px 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+    position: relative;
+}
+
+.legacy-window-content {
+    padding: 15px;
+}
+
+.legacy-button {
+    background-color: var(--legacy-button-face-color);
+    border: 1px var(--legacy-button-border-style);
+    border-color: var(--legacy-button-border-color);
+    box-shadow: var(--legacy-button-shadow);
+    border-radius: var(--legacy-button-border-radius);
+    padding: 5px 15px;
+    min-width: 75px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    position: relative;
+    overflow: hidden;
+}
+
+.legacy-button:active,
+.legacy-button.active {
+    border-color: var(--legacy-button-active-border-color, var(--legacy-border-black-color));
+    box-shadow: none;
+    transform: translate(1px, 1px);
+}
+
+.legacy-input,
+.legacy-textarea {
+    background-color: var(--legacy-window-bg-color);
+    border: var(--legacy-inset-border);
+    border-color: var(--legacy-inset-border-color);
+    padding: 4px;
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    box-shadow: var(--legacy-input-shadow);
+    border-radius: var(--legacy-button-border-radius);
+    width: calc(100% - 10px);
+}
+
+.legacy-progress-bar {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.legacy-progress-bar-fill {
+    height: 100%;
+}
+
+.legacy-checkbox,
+.legacy-radio {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 4px 0;
+}
+
+.legacy-checkbox input,
+.legacy-radio input {
+    display: none;
+}
+
+.legacy-checkbox .control,
+.legacy-radio .control {
+    margin-right: 8px;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s;
+}
+
+/* --- WIN 95 THEME STYLES --- */
+.legacy-ui .legacy-progress-bar {
+    height: 20px;
+    border: 1px solid var(--legacy-border-dark-color);
+    background: #fff;
+    padding: 2px;
+}
+.legacy-ui .legacy-progress-bar-fill {
+    background-color: #000080;
+    background-image: repeating-linear-gradient(45deg, #000080, #000080 10px, #0000a0 10px, #0000a0 20px);
+}
+.legacy-ui .legacy-checkbox .control {
+    width: 13px;
+    height: 13px;
+    background: #fff;
+    border: 1px solid;
+    border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+}
+.legacy-ui .legacy-checkbox input:checked + .control::before {
+    content: '✔';
+    font-size: 12px;
+    color: #000;
+}
+.legacy-ui .legacy-radio .control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid;
+    border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+}
+.legacy-ui .legacy-radio input:checked + .control::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+/* --- WIN XP THEME STYLES --- */
+.theme-winXP .legacy-button:hover {
+    border-color: #fca655;
+    background-color: #fff8e4;
+}
+.theme-winXP .legacy-button:active,
+.theme-winXP .legacy-button.active {
+    transform: none;
+}
+.theme-winXP .legacy-progress-bar {
+    height: 16px;
+    border: 1px solid #aca899;
+    border-radius: 3px;
+    background-color: #e6e6e6;
+}
+.theme-winXP .legacy-progress-bar-fill {
+    background: linear-gradient(to right, #38a536, #86d97f);
+    border-radius: 2px;
+}
+.theme-winXP .legacy-checkbox .control,
+.theme-winXP .legacy-radio .control {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #9a9a9a;
+    background: #fff;
+}
+.theme-winXP .legacy-radio .control {
+    border-radius: 50%;
+}
+.theme-winXP .legacy-checkbox:hover .control,
+.theme-winXP .legacy-radio:hover .control {
+    border-color: #fca655;
+}
+.theme-winXP .legacy-checkbox input:checked + .control::before {
+    content: '✓';
+    font-size: 12px;
+    color: #000;
+}
+.theme-winXP .legacy-radio input:checked + .control::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+/* --- FRUTIGER AERO THEME ENHANCEMENTS --- */
+.theme-win7 .legacy-window {
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.theme-win7 .legacy-window-header {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+.theme-win7 .legacy-window-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    border-radius: 10px 10px 0 0;
+}
+.theme-win7 .legacy-button {
+    background-color: var(--legacy-button-face-color);
+    backdrop-filter: blur(10px);
+}
+.theme-win7 .legacy-button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 150%;
+    height: 60%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    transform: translateX(-20%) translateY(-30%) rotate(-25deg);
+}
+.theme-win7 .legacy-button:hover {
+    border-color: #61dafb;
+    box-shadow: 0 0 15px rgba(97, 218, 251, 0.7);
+}
+.theme-win7 .legacy-button:active,
+.theme-win7 .legacy-button.active {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: translateY(1px);
+}
+.theme-win7 .window-controls {
+    display: flex;
+    z-index: 1;
+}
+.theme-win7 .window-control-button {
+    width: 28px;
+    height: 20px;
+    margin-left: 1px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-family: 'Webdings', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.theme-win7 .window-control-button:hover {
+    background-color: rgba(97, 218, 251, 0.5);
+    border: 1px solid rgba(97, 218, 251, 0.8);
+}
+.theme-win7 .window-control-button.close:hover {
+    background-color: rgba(255, 80, 80, 0.7);
+    border-color: rgba(255, 80, 80, 0.9);
+    color: white;
+}
+.theme-win7 .legacy-input,
+.theme-win7 .legacy-textarea {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #000;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.theme-win7 .legacy-input:focus,
+.theme-win7 .legacy-textarea:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 8px rgba(97, 218, 251, 0.5);
+}
+.theme-win7 .legacy-tabs {
+    border-bottom: 1px solid var(--legacy-border-dark-color);
+    display: flex;
+}
+.theme-win7 .legacy-tab {
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    background-color: transparent;
+    margin-bottom: -1px;
+    position: relative;
+}
+.theme-win7 .legacy-tab.active {
+    font-weight: bold;
+    background-color: var(--legacy-window-bg-color);
+    border-color: var(--legacy-border-dark-color);
+    backdrop-filter: blur(5px);
+}
+.theme-win7 .legacy-tab-content {
+    padding: 15px;
+    border: 1px solid var(--legacy-border-dark-color);
+    border-top: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+.theme-win7 .legacy-progress-bar {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 2px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    height: 22px;
+}
+.theme-win7 .legacy-progress-bar-fill {
+    background: linear-gradient(to bottom, #98e26f, #69c142);
+    background-size: 40px 40px;
+    animation: progress-animation 2s linear infinite;
+    border-radius: 8px;
+    position: relative;
+}
+.theme-win7 .legacy-progress-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    border-radius: 8px 8px 0 0;
+}
+@keyframes progress-animation {
+    from { background-position: 0 0; }
+    to { background-position: -40px 0; }
+}
+.theme-win7 .legacy-checkbox .control,
+.theme-win7 .legacy-radio .control {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.theme-win7 .legacy-checkbox:hover .control,
+.theme-win7 .legacy-radio:hover .control {
+    border-color: #61dafb;
+}
+.theme-win7 .legacy-checkbox input:checked + .control {
+    background: radial-gradient(circle, #aff29a 0%, #69c142 100%);
+}
+.theme-win7 .legacy-checkbox input:checked + .control::before {
+    content: '';
+    width: 10px;
+    height: 5px;
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+    transform: rotate(-45deg) translate(-1px, 1px);
+}
+.theme-win7 .legacy-radio input:checked + .control::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #61dafb;
+}

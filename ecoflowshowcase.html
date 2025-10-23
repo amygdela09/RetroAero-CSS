@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFlow Library Showcase</title>
+    
+    <!-- 1. Import Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Embedded EcoFlow CSS Library v6.0.0 --- */
+
+        /* Universal Styles & Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Core Body & Background Setup */
+        body.ecoflow-background {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0, 191, 255, 0.9) 0%, rgba(30, 144, 255, 0.6) 30%, transparent 80%),
+                radial-gradient(circle at 10% 90%, rgba(50, 205, 50, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 90% 30%, rgba(135, 206, 250, 0.7) 0%, transparent 60%),
+                linear-gradient(180deg, #00BFFF 0%, #1E90FF 25%, #4169E1 50%, #0066CC 75%, #003D82 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: #FFFFFF;
+        }
+
+        /* Optional: Subtle grain overlay */
+        body.ecoflow-background::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXVpaWl0dHTg4ODs7OzT09Pw8PD19fX29vbJycnFxcXa2trCwsKysrKqqqrZ2dnBwcGoqKjDoKDAwMD39/fV1dW+vr7FxcWAcOzOAAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAEZJREFUOI1jYGBgYGFgYGNggAJGwgAAVmY2BgYGBiY2BgaGZmaGBoZWBgaWRgYGRgY2BgaGZmaGBoZWBgaWRgYGRgY2BgaGZgYAZIsCEgDEigNepw1/ewAAAABJRU5ErkJggg==');
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Animated Background Effects */
+        .bg-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* High-Refinement Orb Styling */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            mix-blend-mode: screen; 
+        }
+
+        .orb::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            margin: 1px; 
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8), rgba(220, 240, 255, 0.3) 50%, transparent 100%);
+            filter: blur(15px);
+            z-index: 1;
+        }
+
+        .orb::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 30%, transparent 50%);
+            transform: rotate(-30deg);
+            z-index: 2;
+        }
+
+        /* Orb Color Modifiers */
+        .orb--blue {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1), rgba(30, 144, 255, 0.2));
+            box-shadow: 0 0 80px -20px rgba(0, 255, 255, 0.7);
+        }
+
+        .orb--green {
+            background: radial-gradient(circle at 50% 50%, rgba(173, 255, 47, 0.1), rgba(50, 205, 50, 0.2));
+            box-shadow: 0 0 80px -20px rgba(173, 255, 47, 0.7);
+        }
+
+        .orb--yellow {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.15), rgba(255, 215, 0, 0.2));
+            box-shadow: 0 0 80px -20px rgba(255, 255, 0, 0.7);
+        }
+        
+        /* EcoFlow Components */
+        .cta-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 3rem;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(0, 255, 255, 0.2)), radial-gradient(circle at 30% 30%, rgba(135, 206, 250, 0.5), rgba(30, 144, 255, 0.2));
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), inset 0 1px 3px rgba(255, 255, 255, 1), inset 0 -5px 15px rgba(0, 100, 150, 0.3), 0 0 30px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 1), inset 0 -5px 15px rgba(0, 100, 150, 0.3), 0 0 45px rgba(0, 255, 255, 0.8);
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(0, 255, 255, 0.3)), radial-gradient(circle at 30% 30%, rgba(135, 206, 250, 0.6), rgba(30, 144, 255, 0.3));
+            border: 2px solid rgba(255, 255, 255, 1);
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(0, 255, 255, 0.05)), linear-gradient(45deg, rgba(135, 206, 250, 0.2), rgba(30, 144, 255, 0.1)), radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.4), transparent 50%);
+            backdrop-filter: blur(40px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-top: 3px solid rgba(255, 255, 255, 0.6);
+            border-radius: 25px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 0 35px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.9), transparent);
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* --- Page-specific layout styles --- */
+        .page-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header & Footer Styles */
+        .ecoflow-header {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .ecoflow-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .ecoflow-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        .ecoflow-footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            text-align: center;
+            padding: 6rem 0;
+        }
+        h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 0 25px rgba(0, 255, 255, 0.9), 0 4px 10px rgba(0, 0, 0, 0.4);
+            letter-spacing: -0.05em;
+        }
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #E0F6FF;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Feature Grid Enhancements */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 70%), linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(0, 255, 255, 0.3));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 2px 3px rgba(255, 255, 255, 1), inset 0 -5px 10px rgba(0, 150, 200, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+        .feature-icon svg { width: 36px; height: 36px; opacity: 0.9; stroke-width: 1.5; }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; font-weight: 600; }
+        .feature-card p { font-size: 1rem; line-height: 1.6; }
+        
+        /* Demo & "How to Use" Sections */
+        .demo-section, .how-to-use {
+            text-align: left;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+        .demo-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .demo-orb-container {
+            flex-shrink: 0;
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .demo-orb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+        }
+        .demo-overlap .demo-orb:last-child {
+            top: 20px;
+            left: 20px;
+        }
+
+        .how-to-use pre {
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #E0F6FF;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-top: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<!-- Add the ecoflow-background class to the body -->
+<body class="ecoflow-background">
+
+    <!-- This container will be populated with bubbles by the script -->
+    <div class="bg-orbs"></div>
+
+    <!-- Header -->
+    <header class="ecoflow-header">
+        <nav class="ecoflow-nav">
+            <div class="ecoflow-logo">EcoFlow</div>
+            <!-- Future nav links could go here -->
+        </nav>
+    </header>
+
+    <!-- Main page content -->
+    <main class="page-container">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Welcome to EcoFlow</h1>
+            <p>A lightweight CSS & JS library for creating glossy, glassy, and optimistic web interfaces inspired by the Frutiger Aero aesthetic.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </section>
+
+        <!-- Features Section -->
+        <section class="component-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.32 0L12 2.69z" fill="rgba(255,255,255,0.3)"></path><path d="M12 22.2V12"></path></svg>
+                </div>
+                <h3>Lively Background</h3>
+                <p>A single JS file powers a dynamic, multi-colored bubble background that flows and interacts as you scroll.</p>
+            </div>
+            <div class="feature-card">
+                 <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21.5 12c0-5.24-4.26-9.5-9.5-9.5S2.5 6.76 2.5 12s4.26 9.5 9.5 9.5s9.5-4.26 9.5-9.5z" fill="rgba(255,255,255,0.1)"></path><path d="M12 16.5c-2.48 0-4.5-2.02-4.5-4.5S9.52 7.5 12 7.5s4.5 2.02 4.5 4.5-2.02 4.5-4.5 4.5z" fill="rgba(255,255,255,0.4)"></path></svg>
+                </div>
+                <h3>Glass Components</h3>
+                <p>Ready-to-use classes like `.feature-card` and `.cta-button` provide an instant glossy, translucent look.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5L12 2z" fill="rgba(255,255,255,0.3)"></path><path d="M22 2l-2.5 2.5"></path><path d="M2 22l2.5-2.5"></path></svg>
+                </div>
+                <h3>Easy to Use</h3>
+                <p>Simply link the CSS and JS files, add the container classes, and you're ready to start building your interface.</p>
+            </div>
+        </section>
+
+        <!-- Bubble Demo Section -->
+        <section class="feature-card demo-section">
+            <h3>Live Demo: Bubble Effects</h3>
+            <p style="margin-bottom: 2rem;">The animated background consists of multi-layered, semi-transparent orbs that bounce and blend together.</p>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <div class="demo-orb-container">
+                         <div class="orb demo-orb orb--blue"></div>
+                    </div>
+                    <div>
+                        <h3>Glass & Refraction</h3>
+                        <p>A multi-layered design with `backdrop-filter` creates a realistic, magnifying glass effect.</p>
+                    </div>
+                </div>
+                <div class="demo-item">
+                     <div class="demo-orb-container">
+                         <div class="orb demo-orb orb--green"></div>
+                    </div>
+                    <div>
+                        <h3>Rich Colors</h3>
+                        <p>Orbs are randomly colored from the Frutiger Aero palette for a vibrant, optimistic feel.</p>
+                    </div>
+                </div>
+                 <div class="demo-item">
+                     <div class="demo-orb-container demo-overlap">
+                         <div class="orb demo-orb orb--yellow"></div>
+                         <div class="orb demo-orb orb--blue"></div>
+                    </div>
+                    <div>
+                        <h3>Luminous Blending</h3>
+                        <p>Using `mix-blend-mode`, overlapping orbs blend their colors for a beautiful, liquid-light effect.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section class="feature-card how-to-use">
+            <h3>How to Use</h3>
+            <p>Just add the `ecoflow-background` class to your body and include the `.bg-orbs` container div right after.</p>
+            <pre><code>&lt;body class="ecoflow-background"&gt;
+    &lt;div class="bg-orbs"&gt;&lt;/div&gt;
+    
+    &lt;!-- Your content here --&gt;
+    
+    &lt;script src="ecoflow.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="ecoflow-footer">
+        <p>Powered by the EcoFlow Library</p>
+    </footer>
+
+    <!-- Embedded EcoFlow JavaScript Library -->
+    <script>
+        /**
+         * EcoFlow.js
+         * Version: 1.0.0
+         * Description: Initializes and animates a dynamic, multi-colored orb background.
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            const orbContainer = document.querySelector('.bg-orbs');
+
+            if (!orbContainer) {
+                console.log("EcoFlow.js: No .bg-orbs container found. Orb animation not started.");
+                return;
+            }
+
+            const numberOfOrbs = 8;
+            const colorClasses = ['orb--blue', 'orb--green', 'orb--yellow'];
+            let orbs = [];
+
+            function initializeOrbs() {
+                orbContainer.innerHTML = '';
+                orbs = [];
+
+                for (let i = 0; i < numberOfOrbs; i++) {
+                    const orbElement = document.createElement('div');
+                    orbElement.classList.add('orb');
+                    orbContainer.appendChild(orbElement);
+                    
+                    const size = Math.random() * (140 - 40) + 40;
+                    orbElement.style.width = `${size}px`;
+                    orbElement.style.height = `${size}px`;
+
+                    orbElement.classList.remove(...colorClasses);
+                    orbElement.classList.add(colorClasses[Math.floor(Math.random() * colorClasses.length)]);
+
+                    orbs.push({
+                        element: orbElement,
+                        size: size,
+                        x: Math.random() * (window.innerWidth - size),
+                        y: Math.random() * (window.innerHeight - size),
+                        dx: (Math.random() - 0.5) * 1.5,
+                        dy: (Math.random() - 0.5) * 1.5,
+                    });
+                }
+            }
+            
+            function animateOrbs() {
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = document.body.scrollHeight; 
+                
+                orbs.forEach(orb => {
+                    orb.x += orb.dx;
+                    orb.y += orb.dy;
+
+                    if (orb.x <= 0 || orb.x + orb.size >= viewportWidth) {
+                        orb.dx *= -1;
+                    }
+                    
+                    if (orb.y <= 0 || orb.y + orb.size >= viewportHeight) {
+                        orb.dy *= -1;
+                    }
+                    
+                    orb.x = Math.max(0, Math.min(orb.x, viewportWidth - orb.size));
+                    orb.y = Math.max(0, Math.min(orb.y, viewportHeight - orb.size));
+
+                    orb.element.style.transform = `translate3d(${orb.x}px, ${orb.y}px, 0)`;
+                });
+
+                requestAnimationFrame(animateOrbs);
+            }
+
+            initializeOrbs();
+            animateOrbs();
+            
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(initializeOrbs, 250);
+            });
+        });
+    </script>
+</body>
+</html>

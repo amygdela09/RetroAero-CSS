@@ -1,0 +1,176 @@
+/*
+ * Legacy UI - A CSS library for a classic OS look and feel.
+ * Version 1.0.0
+ * Inspired by classic desktop operating systems.
+ */
+
+/* --- Root Variables --- */
+/* These can be customized to change the theme */
+:root {
+    --legacy-bg-color: #c0c0c0; /* The classic grey background */ /* #008080; teal */
+    --legacy-text-color: #000000;
+    --legacy-window-bg-color: #ffffff;
+    --legacy-window-header-bg-color: #000080; /* Classic blue title bar */
+    --legacy-window-header-text-color: #ffffff;
+    --legacy-button-face-color: #c0c0c0;
+    --legacy-border-light-color: #ffffff;
+    --legacy-border-dark-color: #808080;
+    --legacy-border-black-color: #000000;
+    --legacy-font-family: 'MS Sans Serif', 'Tahoma', 'Verdana', sans-serif;
+    --legacy-font-size: 12px;
+}
+
+/* --- Base Styles --- */
+body.legacy-ui {
+    background-color: var(--legacy-bg-color);
+    color: var(--legacy-text-color);
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- Window Component --- */
+.legacy-window {
+    background-color: var(--legacy-window-bg-color);
+    border: 1px solid var(--legacy-border-black-color);
+    box-shadow: 1px 1px 0 var(--legacy-border-light-color) inset, 1px 1px 0 var(--legacy-border-dark-color);
+    min-width: 250px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.legacy-window-header {
+    background-color: var(--legacy-window-header-bg-color);
+    color: var(--legacy-window-header-text-color);
+    padding: 4px 8px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.legacy-window-header .title {
+    flex-grow: 1;
+}
+
+.legacy-window-header .buttons {
+    display: flex;
+}
+
+.legacy-window-header .buttons button {
+    width: 20px;
+    height: 20px;
+    margin-left: 2px;
+    font-family: 'Marlett', 'Webdings', sans-serif; /* Font for symbols */
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.legacy-window-content {
+    padding: 15px;
+    color: var(--legacy-text-color);
+}
+
+/* --- Button Styles --- */
+.legacy-button {
+    background-color: var(--legacy-button-face-color);
+    border: 1px solid;
+    border-color: var(--legacy-border-light-color) var(--legacy-border-black-color) var(--legacy-border-black-color) var(--legacy-border-light-color);
+    box-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+    padding: 5px 15px;
+    min-width: 75px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.legacy-button:active, .legacy-button.active {
+    border-color: var(--legacy-border-black-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-black-color);
+    box-shadow: none;
+    transform: translate(1px, 1px);
+}
+
+/* --- Form Elements --- */
+.legacy-input, .legacy-textarea, .legacy-select {
+    background-color: var(--legacy-window-bg-color);
+    border: 1px solid;
+    border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+    padding: 4px;
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    box-shadow: 1px 1px 0 #ddd inset;
+}
+
+.legacy-input:focus, .legacy-textarea:focus, .legacy-select:focus {
+    outline: none;
+}
+
+.legacy-fieldset {
+    border: 1px solid;
+    border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 1px 1px 0 #fff inset;
+}
+
+.legacy-legend {
+    background-color: var(--legacy-bg-color);
+    padding: 0 5px;
+    margin-left: 10px;
+}
+
+/* --- Status Bar --- */
+.legacy-status-bar {
+    display: flex;
+    margin-top: 15px;
+}
+
+.legacy-status-bar-panel {
+    flex-grow: 1;
+    padding: 2px 5px;
+    border: 1px solid;
+    border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+    box-shadow: 1px 1px 0 #ddd inset;
+    margin-right: 4px;
+}
+
+.legacy-status-bar-panel:last-child {
+    margin-right: 0;
+}
+
+/* --- Tab Control --- */
+.legacy-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--legacy-border-dark-color);
+    box-shadow: 0 1px 0 var(--legacy-border-light-color);
+}
+
+.legacy-tab {
+    padding: 5px 10px;
+    background-color: var(--legacy-button-face-color);
+    border: 1px solid;
+    border-color: var(--legacy-border-light-color) var(--legacy-border-dark-color) transparent var(--legacy-border-light-color);
+    box-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+    border-radius: 3px 3px 0 0;
+    margin-bottom: -1px;
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+}
+
+.legacy-tab.active {
+    font-weight: bold;
+    border-bottom-color: var(--legacy-button-face-color);
+    box-shadow: none;
+    top: 2px;
+}
+
+.legacy-tab-content {
+    border: 1px solid;
+    border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+    padding: 15px;
+    margin-top: -1px;
+    box-shadow: 1px 1px 0 #fff inset;
+    min-height: 100px;
+}

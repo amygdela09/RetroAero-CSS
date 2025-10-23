@@ -1,0 +1,172 @@
+/*
+ * EcoFlow CSS Library
+ * Version: 6.0.0 (Dynamic Colors & Sizes)
+ * Description: A CSS library inspired by the "Frutiger Aero" design aesthetic,
+ * featuring dynamic, multi-colored bubbles and high-refinement glass effects.
+ */
+
+/* --- Universal Styles & Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Core Body & Background Setup --- */
+body.ecoflow-background {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(0, 191, 255, 0.9) 0%, rgba(30, 144, 255, 0.6) 30%, transparent 80%),
+        radial-gradient(circle at 10% 90%, rgba(50, 205, 50, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 90% 30%, rgba(135, 206, 250, 0.7) 0%, transparent 60%),
+        linear-gradient(180deg, #00BFFF 0%, #1E90FF 25%, #4169E1 50%, #0066CC 75%, #003D82 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: #FFFFFF;
+}
+
+/* Optional: Subtle grain overlay */
+body.ecoflow-background::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXVpaWl0dHTg4ODs7OzT09Pw8PD19fX29vbJycnFxcXa2trCwsKysrKqqqrZ2dnBwcGoqKjDoKDAwMD39/fV1dW+vr7FxcWAcOzOAAAAAXRSTlMAQObYZgAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAEZJREFUOI1jYGBgYGFgYGNggAJGwgAAVmY2BgYGBiY2BgaGZmaGBoZWBgaWRgYGRgY2BgaGZmaGBoZWBgaWRgYGRgY2BgaGZgYAZIsCEgDEigNepw1/ewAAAABJRU5ErkJggg==');
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- Animated Background Effects --- */
+.bg-orbs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* --- High-Refinement Orb Styling --- */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    mix-blend-mode: screen; 
+}
+
+/* Inner Refraction Effect */
+.orb::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: 1px; 
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8), rgba(220, 240, 255, 0.3) 50%, transparent 100%);
+    filter: blur(15px);
+    z-index: 1;
+}
+
+/* Crisp Specular Highlight */
+.orb::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.1) 30%, transparent 50%);
+    transform: rotate(-30deg);
+    z-index: 2;
+}
+
+/* --- Orb Color Modifiers --- */
+.orb--blue {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1), rgba(30, 144, 255, 0.2));
+    box-shadow: 0 0 80px -20px rgba(0, 255, 255, 0.7);
+}
+
+.orb--green {
+    background: radial-gradient(circle at 50% 50%, rgba(173, 255, 47, 0.1), rgba(50, 205, 50, 0.2));
+    box-shadow: 0 0 80px -20px rgba(173, 255, 47, 0.7);
+}
+
+.orb--yellow {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.15), rgba(255, 215, 0, 0.2));
+    box-shadow: 0 0 80px -20px rgba(255, 255, 0, 0.7);
+}
+
+.water-splash {
+    position: fixed;
+    width: 200px;
+    height: 150px;
+    background: radial-gradient(ellipse, rgba(0, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 40%, transparent 70%);
+    border-radius: 50%;
+    animation: ecoflow-splash 5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes ecoflow-splash {
+    0%, 100% { transform: scale(1) translateY(0px); opacity: 0.3; }
+    50% { transform: scale(1.2) translateY(-10px); opacity: 0.6; }
+}
+
+/* --- Components --- */
+.cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 3rem;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(0, 255, 255, 0.2)), radial-gradient(circle at 30% 30%, rgba(135, 206, 250, 0.5), rgba(30, 144, 255, 0.2));
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    backdrop-filter: blur(25px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25), inset 0 1px 3px rgba(255, 255, 255, 1), inset 0 -5px 15px rgba(0, 100, 150, 0.3), 0 0 30px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+.cta-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 1), inset 0 -5px 15px rgba(0, 100, 150, 0.3), 0 0 45px rgba(0, 255, 255, 0.8);
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(0, 255, 255, 0.3)), radial-gradient(circle at 30% 30%, rgba(135, 206, 250, 0.6), rgba(30, 144, 255, 0.3));
+    border: 2px solid rgba(255, 255, 255, 1);
+}
+
+.feature-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(0, 255, 255, 0.05)), linear-gradient(45deg, rgba(135, 206, 250, 0.2), rgba(30, 144, 255, 0.1)), radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.4), transparent 50%);
+    backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top: 3px solid rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 0 35px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.9), transparent);
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+}

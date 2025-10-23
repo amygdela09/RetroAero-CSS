@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy UI Theme Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * Legacy UI - A CSS library for a classic OS look and feel.
+         * Version 2.5.0
+         * Themes for Windows 95, Windows XP, and a feature-rich glossy Windows 7 Aero.
+         * To use a theme, add the theme class (e.g., 'theme-winXP') to a parent container.
+         */
+
+        /* --- Root Variables (Default - Windows 95) --- */
+        :root {
+            --legacy-font-family: 'Tahoma', 'MS Sans Serif', 'Verdana', sans-serif;
+            --legacy-font-size: 12px;
+            /* Backgrounds */
+            --legacy-bg-color: #c0c0c0;
+            --legacy-window-bg-color: #ffffff;
+            --legacy-button-face-color: #c0c0c0;
+            --legacy-window-header-bg: #000080; /* Solid Color */
+            /* Text */
+            --legacy-text-color: #000000;
+            --legacy-window-header-text-color: #ffffff;
+            /* Borders & Shadows */
+            --legacy-border-light-color: #ffffff;
+            --legacy-border-dark-color: #808080;
+            --legacy-border-black-color: #000000;
+            --legacy-button-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+            --legacy-window-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+            --legacy-input-shadow: 1px 1px 0 #ddd inset;
+            --legacy-inset-border: 1px solid;
+            --legacy-inset-border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+            /* Component Specific */
+            --legacy-window-border-radius: 0;
+            --legacy-button-border-radius: 0;
+            --legacy-button-border-style: solid;
+            --legacy-button-border-color: var(--legacy-border-light-color) var(--legacy-border-black-color) var(--legacy-border-black-color) var(--legacy-border-light-color);
+            --legacy-button-active-border-color: var(--legacy-border-black-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-black-color);
+        }
+
+        /* --- Windows XP Theme --- */
+        .theme-winXP {
+            --legacy-font-family: 'Tahoma', 'Verdana', sans-serif;
+            --legacy-font-size: 11px;
+            --legacy-bg-color: #ece9d8;
+            --legacy-button-face-color: #f0f0f0;
+            --legacy-window-header-bg: linear-gradient(to right, #0055e7, #0078ff 80%);
+            --legacy-window-header-text-color: #ffffff;
+            --legacy-border-dark-color: #aca899;
+            --legacy-border-black-color: #707070;
+            --legacy-button-shadow: none;
+            --legacy-window-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            --legacy-input-shadow: none;
+            --legacy-inset-border-color: var(--legacy-border-dark-color);
+            --legacy-window-border-radius: 3px;
+            --legacy-button-border-radius: 3px;
+            --legacy-button-border-color: #0045e0;
+        }
+
+        /* --- Windows 7 Glossy Aero Theme --- */
+        .theme-win7 {
+            --legacy-font-family: 'Segoe UI', 'Tahoma', sans-serif;
+            --legacy-font-size: 12px;
+            --legacy-bg-color: rgba(240, 240, 240, 0.3);
+            --legacy-window-bg-color: rgba(245, 245, 250, 0.85);
+            --legacy-button-face-color: #f0f0f0;
+            --legacy-window-header-bg: linear-gradient(to bottom, rgba(240, 248, 255, 0.8), rgba(200, 220, 240, 0.6));
+            --legacy-window-header-text-color: #000000;
+            --legacy-border-dark-color: #a0a0a0;
+            --legacy-border-black-color: #707070;
+            --legacy-button-shadow: none;
+            --legacy-window-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --legacy-input-shadow: none;
+            --legacy-inset-border-color: var(--legacy-border-dark-color);
+            --legacy-window-border-radius: 6px;
+            --legacy-button-border-radius: 3px;
+            --legacy-button-border-color: #a0a0a0;
+        }
+        
+        /* --- Base Styles --- */
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a202c;
+            background-image: radial-gradient(circle, #4a5568, #2d3748, #1a202c);
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        .showcase-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .theme-container {
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        .theme-container h2 {
+            margin-top: 0;
+            border-bottom: 2px solid;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: var(--legacy-text-color);
+            font-family: var(--legacy-font-family);
+        }
+
+        /* Apply theme background to container */
+        .legacy-ui.theme-container { background-color: var(--legacy-bg-color); }
+        .theme-winXP.theme-container { background-color: var(--legacy-bg-color); }
+        .theme-win7.theme-container { background-color: var(--legacy-bg-color); backdrop-filter: blur(10px); }
+
+        /* --- Component Styles --- */
+        .legacy-window {
+            background-color: var(--legacy-window-bg-color); border: 1px solid var(--legacy-border-black-color);
+            box-shadow: var(--legacy-window-shadow); min-width: 250px; margin: 20px auto;
+            border-radius: var(--legacy-window-border-radius); overflow: hidden; font-family: var(--legacy-font-family);
+            font-size: var(--legacy-font-size); color: var(--legacy-text-color);
+        }
+        .legacy-window-header {
+            background: var(--legacy-window-header-bg); color: var(--legacy-window-header-text-color);
+            padding: 4px 10px; font-weight: bold; display: flex; justify-content: space-between;
+            align-items: center; text-shadow: 1px 1px 1px rgba(255,255,255,0.5); position: relative;
+        }
+        .legacy-window-content { padding: 15px; }
+        .legacy-button {
+            background-color: var(--legacy-button-face-color); border: 1px var(--legacy-button-border-style);
+            border-color: var(--legacy-button-border-color); box-shadow: var(--legacy-button-shadow);
+            border-radius: var(--legacy-button-border-radius); padding: 5px 15px; min-width: 75px; text-align: center;
+            cursor: pointer; transition: all 0.2s ease-in-out; font-family: var(--legacy-font-family);
+            font-size: var(--legacy-font-size); position: relative; overflow: hidden;
+        }
+        .legacy-button:active, .legacy-button.active {
+            border-color: var(--legacy-button-active-border-color, var(--legacy-border-black-color));
+            box-shadow: none; transform: translate(1px, 1px);
+        }
+        
+        .legacy-input, .legacy-textarea {
+            background-color: var(--legacy-window-bg-color); border: var(--legacy-inset-border);
+            border-color: var(--legacy-inset-border-color); padding: 4px; font-family: var(--legacy-font-family);
+            font-size: var(--legacy-font-size); box-shadow: var(--legacy-input-shadow);
+            border-radius: var(--legacy-button-border-radius); width: calc(100% - 10px);
+        }
+
+        /* --- GENERAL COMPONENT STYLES --- */
+        .legacy-progress-bar { width: 100%; box-sizing: border-box; }
+        .legacy-progress-bar-fill { height: 100%; }
+        .legacy-checkbox, .legacy-radio { display: inline-flex; align-items: center; cursor: pointer; margin: 4px 0; }
+        .legacy-checkbox input, .legacy-radio input { display: none; }
+        .legacy-checkbox .control, .legacy-radio .control { margin-right: 8px; display: grid; place-items: center; transition: all 0.2s; }
+
+        /* --- WIN 95 THEME STYLES --- */
+        .legacy-ui .legacy-progress-bar { height: 20px; border: 1px solid var(--legacy-border-dark-color); background: #fff; padding: 2px; }
+        .legacy-ui .legacy-progress-bar-fill {
+            background-color: #000080;
+            background-image: repeating-linear-gradient(45deg, #000080, #000080 10px, #0000a0 10px, #0000a0 20px);
+        }
+        .legacy-ui .legacy-checkbox .control {
+            width: 13px; height: 13px; background: #fff;
+            border: 1px solid; border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+        }
+        .legacy-ui .legacy-checkbox input:checked + .control::before { content: '✔'; font-size: 12px; color: #000; }
+        .legacy-ui .legacy-radio .control {
+            width: 12px; height: 12px; border-radius: 50%; background: #fff;
+            border: 1px solid; border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+        }
+        .legacy-ui .legacy-radio input:checked + .control::before { content: ''; width: 6px; height: 6px; background-color: #000; border-radius: 50%; }
+
+        /* --- WIN XP THEME STYLES --- */
+        .theme-winXP .legacy-button:hover { border-color: #fca655; background-color: #fff8e4; }
+        .theme-winXP .legacy-button:active, .theme-winXP .legacy-button.active { transform: none; }
+        .theme-winXP .legacy-progress-bar { height: 16px; border: 1px solid #aca899; border-radius: 3px; background-color: #e6e6e6; }
+        .theme-winXP .legacy-progress-bar-fill { background: linear-gradient(to right, #38a536, #86d97f); border-radius: 2px; }
+        .theme-winXP .legacy-checkbox .control, .theme-winXP .legacy-radio .control { width: 13px; height: 13px; border: 1px solid #9a9a9a; background: #fff; }
+        .theme-winXP .legacy-radio .control { border-radius: 50%; }
+        .theme-winXP .legacy-checkbox:hover .control, .theme-winXP .legacy-radio:hover .control { border-color: #fca655; }
+        .theme-winXP .legacy-checkbox input:checked + .control::before { content: '✓'; font-size: 12px; color: #000; }
+        .theme-winXP .legacy-radio input:checked + .control::before { content: ''; width: 5px; height: 5px; background-color: #000; border-radius: 50%; }
+        
+        /* AERO GLOSSY ENHANCEMENTS */
+        .theme-win7 .legacy-window { border: 1px solid rgba(100,100,100,0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
+        .theme-win7 .legacy-window-header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0));
+            border-radius: 6px 6px 0 0;
+        }
+        .theme-win7 .legacy-button { background: linear-gradient(to bottom, #ffffff, #e0e0e0); }
+        .theme-win7 .legacy-button::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 150%; height: 60%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0));
+            transform: translateX(-20%) translateY(-30%) rotate(-25deg);
+        }
+        .theme-win7 .legacy-button:hover { border-color: #3C7FB1; box-shadow: 0 0 10px rgba(60, 127, 177, 0.7); }
+        .theme-win7 .legacy-button:active, .theme-win7 .legacy-button.active { background: linear-gradient(to top, #d0e0f0, #c0d0e0); transform: none; }
+        .window-controls { display: flex; z-index: 1; }
+        .window-control-button {
+            width: 28px; height: 20px; margin-left: 1px; border: 1px solid transparent; border-radius: 3px;
+            font-family: 'Webdings', sans-serif; font-size: 14px; line-height: 20px; text-align: center; transition: all 0.2s;
+        }
+        .theme-win7 .window-control-button:hover { background-color: rgba(60, 127, 177, 0.5); border-color: rgba(60, 127, 177, 0.8); }
+        .theme-win7 .window-control-button.close:hover { background-color: rgba(255, 0, 0, 0.7); border-color: rgba(255,0,0,0.9); color: white; }
+        .theme-win7 .legacy-input:focus, .theme-win7 .legacy-textarea:focus { outline: none; border-color: #3C7FB1; box-shadow: 0 0 5px rgba(60, 127, 177, 0.5); }
+        .theme-win7 .legacy-tabs { display: flex; border-bottom: 1px solid var(--legacy-border-dark-color); }
+        .theme-win7 .legacy-tab {
+            padding: 8px 12px; border: 1px solid transparent; border-bottom: none; border-radius: 3px 3px 0 0;
+            cursor: pointer; background-color: transparent; margin-bottom: -1px; position: relative;
+        }
+        .theme-win7 .legacy-tab.active { font-weight: bold; background-color: var(--legacy-window-bg-color); border-color: var(--legacy-border-dark-color); }
+        .theme-win7 .legacy-tab-content { padding: 15px; border: 1px solid var(--legacy-border-dark-color); border-top: none; }
+        .theme-win7 .legacy-progress-bar {
+            width: 100%; height: 18px; background-color: #fff; border: 1px solid #a0a0a0;
+            border-radius: 3px; padding: 2px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .theme-win7 .legacy-progress-bar-fill {
+            background: linear-gradient(to bottom, #98e26f, #69c142); background-size: 40px 40px;
+            animation: progress-animation 2s linear infinite; border-radius: 2px;
+            position: relative; overflow: hidden;
+        }
+        .theme-win7 .legacy-progress-bar-fill::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0));
+        }
+        @keyframes progress-animation { from { background-position: 0 0; } to { background-position: -40px 0; } }
+        .theme-win7 .legacy-checkbox .control, .theme-win7 .legacy-radio .control {
+            width: 18px; height: 18px; border: 1px solid #707070; border-radius: 3px;
+            background: linear-gradient(to bottom, #fcfcfc, #e8e8e8);
+        }
+        .theme-win7 .legacy-radio .control { border-radius: 50%; }
+        .theme-win7 .legacy-checkbox:hover .control, .theme-win7 .legacy-radio:hover .control { border-color: #3c7fb1; }
+        .theme-win7 .legacy-checkbox input:checked + .control::before { content: '✓'; font-size: 14px; font-weight: bold; color: #3c7fb1; }
+        .theme-win7 .legacy-radio input:checked + .control::before { content: ''; width: 8px; height: 8px; background-color: #3c7fb1; border-radius: 50%; }
+
+    </style>
+</head>
+<body>
+
+    <h1 class="showcase-title">Legacy UI Theme Showcase</h1>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Windows 95 Theme ~~~~~~~~~~~~~~~~~~~~ -->
+    <div class="theme-container legacy-ui">
+        <h2>Windows 95 (Default)</h2>
+        <div class="legacy-window">
+            <div class="legacy-window-header"><div class="title">Disk Cleanup</div></div>
+            <div class="legacy-window-content">
+                <p>Select the drive you want to clean up.</p>
+                <label class="legacy-checkbox"><input type="checkbox" checked><span class="control"></span>Temporary Internet Files</label>
+                <label class="legacy-checkbox"><input type="checkbox"><span class="control"></span>Recycle Bin</label>
+                <p style="margin-top: 15px;">Scanning for files to delete...</p>
+                <div class="legacy-progress-bar"><div class="legacy-progress-bar-fill" style="width: 45%;"></div></div>
+                <div style="text-align: center; margin-top: 20px;"><button class="legacy-button">OK</button><button class="legacy-button">Cancel</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Windows XP Theme ~~~~~~~~~~~~~~~~~~~~ -->
+    <div class="theme-container theme-winXP">
+        <h2>Windows XP ("Luna")</h2>
+        <div class="legacy-window">
+            <div class="legacy-window-header"><div class="title">System Restore</div></div>
+            <div class="legacy-window-content">
+                <p>Select a restore point:</p>
+                <label class="legacy-radio"><input type="radio" name="restore"><span class="control"></span>Restore my computer to an earlier time</label>
+                <label class="legacy-radio" checked><input type="radio" name="restore" checked><span class="control"></span>Create a restore point</label>
+                <p style="margin-top: 15px;">System is creating a restore point...</p>
+                <div class="legacy-progress-bar"><div class="legacy-progress-bar-fill" style="width: 75%;"></div></div>
+                <div style="text-align: right; margin-top: 20px;"><button class="legacy-button">Next &gt;</button><button class="legacy-button">Cancel</button></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ~~~~~~~~~~~~~~~~~~~~ Windows 7 Glossy Aero Theme ~~~~~~~~~~~~~~~~~~~~ -->
+    <div class="theme-container theme-win7">
+        <h2>Windows 7 ("Aero")</h2>
+        <div class="legacy-window">
+            <div class="legacy-window-header">
+                <div class="title">Appearance Settings</div>
+                <div class="window-controls"><div class="window-control-button">0</div><div class="window-control-button">1</div><div class="window-control-button close">r</div></div>
+            </div>
+            <div class="legacy-window-content">
+                <div class="legacy-tabs">
+                    <div class="legacy-tab active">Effects</div><div class="legacy-tab">Performance</div>
+                </div>
+                <div class="legacy-tab-content">
+                    <p>Enable the following visual effects:</p>
+                    <label class="legacy-checkbox"><input type="checkbox" checked><span class="control"></span>Enable Aero Peek</label>
+                    <label class="legacy-checkbox"><input type="checkbox" checked><span class="control"></span>Show shadows under windows</label>
+                    <p style="margin-top: 20px;">Applying new theme:</p>
+                    <div class="legacy-progress-bar"><div class="legacy-progress-bar-fill" style="width: 60%;"></div></div>
+                </div>
+                 <div style="text-align: right; padding: 15px 0 0;"><button class="legacy-button">OK</button><button class="legacy-button">Cancel</button></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

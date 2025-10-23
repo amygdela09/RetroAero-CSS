@@ -1,0 +1,211 @@
+/*
+ * Legacy UI - A CSS library for a classic OS look and feel.
+ * Version 2.0.0
+ * Now with themes for Windows 95, Windows XP, and Windows 7.
+ * To use a theme, add 'theme-winXP' or 'theme-win7' class to the body.
+ */
+
+/* --- Root Variables (Default - Windows 95) --- */
+:root {
+    --legacy-font-family: 'MS Sans Serif', 'Tahoma', 'Verdana', sans-serif;
+    --legacy-font-size: 12px;
+
+    /* Backgrounds */
+    --legacy-bg-color: #c0c0c0;
+    --legacy-window-bg-color: #ffffff;
+    --legacy-button-face-color: #c0c0c0;
+    --legacy-window-header-bg: #000080; /* Solid Color */
+    
+    /* Text */
+    --legacy-text-color: #000000;
+    --legacy-window-header-text-color: #ffffff;
+
+    /* Borders & Shadows */
+    --legacy-border-light-color: #ffffff;
+    --legacy-border-dark-color: #808080;
+    --legacy-border-black-color: #000000;
+    --legacy-button-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+    --legacy-window-shadow: 1px 1px 0 var(--legacy-border-dark-color);
+    --legacy-input-shadow: 1px 1px 0 #ddd inset;
+    --legacy-inset-border: 1px solid;
+    --legacy-inset-border-color: var(--legacy-border-dark-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-dark-color);
+
+    /* Component Specific */
+    --legacy-window-border-radius: 0;
+    --legacy-button-border-radius: 0;
+    --legacy-button-border-style: solid;
+    --legacy-button-border-color: var(--legacy-border-light-color) var(--legacy-border-black-color) var(--legacy-border-black-color) var(--legacy-border-light-color);
+    --legacy-button-active-border-color: var(--legacy-border-black-color) var(--legacy-border-light-color) var(--legacy-border-light-color) var(--legacy-border-black-color);
+}
+
+/* --- Windows XP Theme --- */
+.theme-winXP {
+    --legacy-font-family: 'Tahoma', 'Verdana', sans-serif;
+    --legacy-font-size: 11px;
+
+    /* Backgrounds */
+    --legacy-bg-color: #ece9d8;
+    --legacy-button-face-color: #f0f0f0;
+    --legacy-window-header-bg: linear-gradient(to right, #0055e7, #0078ff 80%);
+
+    /* Text */
+    --legacy-window-header-text-color: #ffffff;
+
+    /* Borders & Shadows */
+    --legacy-border-light-color: #ffffff;
+    --legacy-border-dark-color: #aca899;
+    --legacy-border-black-color: #707070;
+    --legacy-button-shadow: none;
+    --legacy-window-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    --legacy-input-shadow: none;
+    --legacy-inset-border: 1px solid var(--legacy-border-dark-color);
+    --legacy-inset-border-color: var(--legacy-border-dark-color); /* Simplified for XP */
+    
+    /* Component Specific */
+    --legacy-window-border-radius: 3px;
+    --legacy-button-border-radius: 3px;
+    --legacy-button-border-style: solid;
+    --legacy-button-border-color: #0045e0;
+}
+
+/* --- Windows 7 Theme --- */
+.theme-win7 {
+    --legacy-font-family: 'Segoe UI', 'Tahoma', sans-serif;
+    --legacy-font-size: 12px;
+
+    /* Backgrounds (Aero Glass Effect) */
+    --legacy-bg-color: #f0f0f0;
+    --legacy-window-bg-color: #ffffff;
+    --legacy-button-face-color: #f0f0f0;
+    --legacy-window-header-bg: linear-gradient(to bottom, rgba(230, 240, 255, 0.8), rgba(180, 200, 240, 0.7));
+    
+    /* Text */
+    --legacy-text-color: #000000;
+    --legacy-window-header-text-color: #000000;
+
+    /* Borders & Shadows (Softer look) */
+    --legacy-border-light-color: #d0d0d0;
+    --legacy-border-dark-color: #a0a0a0;
+    --legacy-border-black-color: #707070;
+    --legacy-button-shadow: none;
+    --legacy-window-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    --legacy-input-shadow: none;
+    --legacy-inset-border: 1px solid var(--legacy-border-dark-color);
+    --legacy-inset-border-color: var(--legacy-border-dark-color);
+
+    /* Component Specific */
+    --legacy-window-border-radius: 4px;
+    --legacy-button-border-radius: 3px;
+    --legacy-button-border-style: solid;
+    --legacy-button-border-color: #a0a0a0;
+}
+
+/* --- Base Styles --- */
+body.legacy-ui {
+    background-color: var(--legacy-bg-color);
+    color: var(--legacy-text-color);
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- Window Component --- */
+.legacy-window {
+    background-color: var(--legacy-window-bg-color);
+    border: 1px solid var(--legacy-border-black-color);
+    box-shadow: var(--legacy-window-shadow);
+    min-width: 250px;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: var(--legacy-window-border-radius);
+    overflow: hidden; /* Ensures header corners match window corners */
+}
+
+.legacy-window-header {
+    background: var(--legacy-window-header-bg);
+    color: var(--legacy-window-header-text-color);
+    padding: 4px 8px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1); /* Subtle shadow for readability */
+}
+
+/* --- Button Styles --- */
+.legacy-button {
+    background-color: var(--legacy-button-face-color);
+    border: 1px var(--legacy-button-border-style);
+    border-color: var(--legacy-button-border-color);
+    box-shadow: var(--legacy-button-shadow);
+    border-radius: var(--legacy-button-border-radius);
+    padding: 5px 15px;
+    min-width: 75px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.legacy-button:active, .legacy-button.active {
+    border-color: var(--legacy-button-active-border-color, var(--legacy-border-black-color));
+    box-shadow: none;
+    transform: translate(1px, 1px);
+}
+
+/* --- Theme-specific Button Overrides --- */
+.theme-winXP .legacy-button:hover, .theme-win7 .legacy-button:hover {
+    border-color: #fca655;
+    background-color: #fff8e4;
+}
+.theme-winXP .legacy-button:active, .theme-winXP .legacy-button.active {
+    border-color: #e09040;
+    background-color: #fde6c4;
+    transform: none; /* XP buttons don't move */
+}
+.theme-win7 .legacy-button {
+    background: linear-gradient(to bottom, #ffffff, #e0e0e0);
+    transform: none; /* Win7 buttons don't move */
+}
+.theme-win7 .legacy-button:active, .theme-win7 .legacy-button.active {
+    border-color: #3c7fb1;
+    background: linear-gradient(to bottom, #d0e0f0, #c0d0e0);
+    transform: none;
+}
+
+
+/* --- Form Elements --- */
+.legacy-input, .legacy-textarea, .legacy-select {
+    background-color: var(--legacy-window-bg-color);
+    border: var(--legacy-inset-border);
+    border-color: var(--legacy-inset-border-color);
+    padding: 4px;
+    font-family: var(--legacy-font-family);
+    font-size: var(--legacy-font-size);
+    box-shadow: var(--legacy-input-shadow);
+    border-radius: var(--legacy-button-border-radius); /* Match button radius */
+}
+
+.legacy-input:focus, .legacy-textarea:focus, .legacy-select:focus {
+    outline: none;
+    border-color: #fca655; /* A common focus color */
+}
+
+/* ... other component styles like fieldset, status-bar, tabs would go here ... */
+/* (Keeping them the same for brevity, but they could be themed as well) */
+
+.legacy-fieldset {
+    border: var(--legacy-inset-border);
+    border-color: var(--legacy-inset-border-color);
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.legacy-status-bar-panel {
+    flex-grow: 1;
+    padding: 2px 5px;
+    border: var(--legacy-inset-border);
+    border-color: var(--legacy-inset-border-color);
+    box-shadow: var(--legacy-input-shadow);
+    margin-right: 4px;
+}
